@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Where Will I Travel Next?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      /* Slightly smaller map background */
+      background-image: url('https://freevector-images.s3.amazonaws.com/uploads/vector/preview/165256/vecteezy-CountryName_-WorldMap-RH0223_generated.jpg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 90%;   /* 👈 smaller than full screen */
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+    }
+
+    /* Country display in center */
+    #country-display {
+      font-size: 4rem;
+      font-weight: bold;
+      color: black;          /* 👈 changed to black */
+      animation: pop 0.5s ease-in-out;
+      margin-bottom: auto;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.5); opacity: 0; }
+      50% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Buttons at bottom */
+    .button-container {
+      margin-top: auto;
+      margin-bottom: 40px;
+      display: flex;
+      gap: 20px;
+    }
+
+    button {
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: #357ab8;
+      transform: scale(1.05);
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Where Will I Travel Next?</h1>
+  <p>Click Discover to see your next travel destination!</p>
+
+  <!-- Country + flag -->
+  <div id="country-display"></div>
+
+  <!-- Buttons -->
+  <div class="button-container">
+    <button onclick="pickCountry()">Discover!</button>
+    <button onclick="resetGame()">Reset</button>
+  </div>
+
+  <footer>Created by Annie – Your travel adventure starts here!</footer>
+
+  <script>
+    const countries = [
+      {name: "Japan", flag: "🇯🇵"},
+      {name: "Italy", flag: "🇮🇹"},
+      {name: "New Zealand", flag: "🇳🇿"},
+      {name: "Canada", flag: "🇨🇦"},
+      {name: "Brazil", flag: "🇧🇷"},
+      {name: "France", flag: "🇫🇷"},
+      {name: "Iceland", flag: "🇮🇸"},
+      {name: "Australia", flag: "🇦🇺"},
+      {name: "Thailand", flag: "🇹🇭"},
+      {name: "Greece", flag: "🇬🇷"},
+      {name: "Norway", flag: "🇳🇴"},
+      {name: "South Africa", flag: "🇿🇦"},
+      {name: "Portugal", flag: "🇵🇹"},
+      {name: "Spain", flag: "🇪🇸"},
+      {name: "Mexico", flag: "🇲🇽"},
+      {name: "Peru", flag: "🇵🇪"},
+      {name: "Morocco", flag: "🇲🇦"},
+      {name: "Vietnam", flag: "🇻🇳"},
+      {name: "Switzerland", flag: "🇨🇭"},
+      {name: "Croatia", flag: "🇭🇷"}
+    ];
+
+    const display = document.getElementById("country-display");
+
+    function pickCountry() {
+      const randomIndex = Math.floor(Math.random() * countries.length);
+      const country = countries[randomIndex];
+      display.textContent = `${country.flag} ${country.name}`;
+    }
+
+    function resetGame() {
+      display.textContent = "";
+    }
+  </script>
+
+</body>
+</html>
